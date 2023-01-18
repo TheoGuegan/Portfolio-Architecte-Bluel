@@ -1,112 +1,80 @@
-window.addEventListener("DOMContentLoaded", () => {
-
-// fetch('http://localhost:5678/api/categories')
-//   .then((response) => response.json())
-//   .then((data) => console.log(data));
-
-// Création Card
-
 const gallery = document.querySelector(".gallery");
+const filterBar = document.querySelector("#filter");
+let cards = [];
+let categories = [];
 
-class MyCards {
-    constructor(id, title, imageUrl,categoryId, userId, categoryIndex, categoryName) {
-        this.id = id;
-        this.title = title;
-        this.imageUrl = imageUrl;
-        this.categoryId = categoryId;
-        this.userId = userId;
-        this.categoryIndex = categoryIndex;
-        this.categoryName = categoryName;
+function createCard (works) {
+    console.log(works);
+    for (let i = 0; i < works.length; i++){
+        const work = works[i];
+        const figureCard = document.createElement("figure");
+        figureCard.classList = work.categoryId;
+        const imageCard = document.createElement("img");
+        imageCard.setAttribute("crossorigin", "anonymous");
+        imageCard.setAttribute("src", work.imageUrl);
+        imageCard.setAttribute("alt", work.title);
+        const figCaptionCard = document.createElement("figcaption");
+        figCaptionCard.innerText = work.title;
+        gallery.appendChild(figureCard);
+        figureCard.appendChild(imageCard);
+        figureCard.appendChild(figCaptionCard);
+        }
+};
+
+fetch("http://localhost:5678/api/works")
+    .then((res) => {
+        if (res.ok) {
+            return res.json();
+        } else {
+            console.log("error here !")
+        }
+    })
+    .then((works) => {
+        cards = works;    
+        createCard (works);
+    });
+
+const boutonTous = document.querySelector(".btn-all");
+const boutonObjets = document.querySelector(".btn-objets");
+
+boutonTous.addEventListener("click", function() {
+    const cardsAll = cards.filter(function (work) {
+        console.log(work.category.id);
+        return work.category.id == 1 || 2 || 3;
+    })
+    gallery.innerHTML = "";
+    createCard (cardsAll);
+});
+
+function createButton (categoriesData) {
+    console.log(categoriesData);
+    for (let i = 0; i < categoriesData.length ; i++){
+        const category = categoriesData[i];
+        const buttonFilter = document.createElement("button");
+        buttonFilter.classList = category.id;
+        buttonFilter.innerText = category.name;
+        filter.appendChild(buttonFilter);
+        buttonFilter.addEventListener("click", function() {
+            const cardsFiltered = cards.filter(function (work) {
+                return work.category.id == buttonFilter.classList
+            })
+            gallery.innerHTML = "";
+            createCard (cardsFiltered);
+        })
     }
 };
 
-function createCard() {
-    fetch("http://localhost:5678/api/works")
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                console.log("error here !")
-            }
-        })
-        .then((works) => {
-            // jsondata correspond à la valeur retournée par le .then() précédent
-    
-                for (let work of works){
-                const dataObj = new MyCards(work.id, work.title, work.imageUrl, work.categoryId, work.userId, work.category.id, work.category.name);
-                let figure = document.createElement("figure");
-                let image = document.createElement("img");
-                let figcaption = document.createElement("figcaption");
-                figure.appendChild(image);
-                figure.appendChild(figcaption);
-                image.setAttribute("crossorigin", "anonymous");
-                image.setAttribute("src", dataObj.imageUrl);
-                image.setAttribute("alt", dataObj.title);
-                figure.id = categoryIndex;
-                figcaption.innerText = dataObj.title ;
-                gallery.appendChild(figure);
-            }
-        });
-};
 
-createCard();
 
-// creation barre de filtres
-
-const portFolioFilterBarPlace = document.querySelector("#filter");
-
-class btnFilter {
-    constructor(id, name) {
-        this.id = id;
-        this.name = name;
-    }   
-};
-
-function createFilterBar () {
-    fetch("http://localhost:5678/api/categories")
-        .then ((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                console.log("err")
-            }
-        })
-        .then((categories) => {
-            for (let category of categories) {
-            const catObj = new btnFilter(category.id, category.name);
-            let div = document.createElement("div");
-            div.classList.add('divBtnFilter');
-            let button = document.createElement("input");
-            button.classList.add('buttonFilter');
-            button.id = catObj.name;
-            div.appendChild(button);
-            button.setAttribute("type", 'submit');
-            button.setAttribute( "value", catObj.name)
-            portFolioFilterBarPlace.appendChild(div);
-            }
-        })
-};
-
-createFilterBar ();
-
-// Création bouton "all" dans barre de filtre
-
-function btnAllFilterBar() { 
-    
-    let div = document.createElement("div");
-    div.classList.add('divBtnFilter');
-    div.setAttribute("id", 'divBtnAll');
-    let button = document.createElement("input");
-    button.classList.add('buttonFilter');
-    button.setAttribute("id", 'btnAll');
-    div.appendChild(button);
-    button.setAttribute("type", 'submit');
-    button.setAttribute("value", 'Tous')
-    portFolioFilterBarPlace.appendChild(div);
-    };
-
-btnAllFilterBar ();
-
-// function filter (button)
-});
-
+fetch("http://localhost:5678/api/categories")
+    .then((res) => {
+        if (res.ok) {
+            return res.json();
+        } else {
+            console.log("error here !")
+        }
+    })
+    .then((categoriesData) => {
+        categories = categoriesData;
+        createButton (categoriesData);
+    });
