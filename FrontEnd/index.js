@@ -4,7 +4,7 @@ let cards = [];
 let categories = [];
 
 function createCard (works) {
-    console.log(works);
+    // console.log(works);
     for (let i = 0; i < works.length; i++){
         const work = works[i];
         const figureCard = document.createElement("figure");
@@ -34,12 +34,12 @@ fetch("http://localhost:5678/api/works")
         createCard (works);
     });
 
-const boutonTous = document.querySelector(".btn-all");
+const boutonTous = document.querySelector("#btn-all");
 const boutonObjets = document.querySelector(".btn-objets");
 
 boutonTous.addEventListener("click", function() {
     const cardsAll = cards.filter(function (work) {
-        console.log(work.category.id);
+        // console.log(work.category.id);
         return work.category.id == 1 || 2 || 3;
     })
     gallery.innerHTML = "";
@@ -47,7 +47,7 @@ boutonTous.addEventListener("click", function() {
 });
 
 function createButton (categoriesData) {
-    console.log(categoriesData);
+    // console.log(categoriesData);
     for (let i = 0; i < categoriesData.length ; i++){
         const category = categoriesData[i];
         const buttonFilter = document.createElement("button");
@@ -56,13 +56,22 @@ function createButton (categoriesData) {
         filter.appendChild(buttonFilter);
         buttonFilter.addEventListener("click", function() {
             const cardsFiltered = cards.filter(function (work) {
-                return work.category.id == buttonFilter.classList
+                return work.category.id == buttonFilter.classList;
             })
             gallery.innerHTML = "";
+            buttonFilter.style.color = "white";
+            buttonFilter.style.background = "#1D6154";
             createCard (cardsFiltered);
         })
     }
 };
+
+// setTimeout(function() {
+//     let buttonsFilter = document.querySelectorAll("#filter button");
+//     console.log(buttonsFilter);
+// }, 50)
+
+
 
 
 
