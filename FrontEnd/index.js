@@ -51,27 +51,32 @@ function createButton (categoriesData) {
     for (let i = 0; i < categoriesData.length ; i++){
         const category = categoriesData[i];
         const buttonFilter = document.createElement("button");
-        buttonFilter.classList = category.id;
+        buttonFilter.id = category.id;
         buttonFilter.innerText = category.name;
         filter.appendChild(buttonFilter);
         buttonFilter.addEventListener("click", function() {
-            const cardsFiltered = cards.filter(function (work) {
-                return work.category.id == buttonFilter.classList;
-            })
-            gallery.innerHTML = "";
-            buttonFilter.style.color = "white";
-            buttonFilter.style.background = "#1D6154";
-            createCard (cardsFiltered);
+        const cardsFiltered = cards.filter(function (work) {
+            return work.category.id == buttonFilter.id;
         })
-    }
+        gallery.innerHTML = "";
+        createCard (cardsFiltered);
+        buttonFilter.classList = ('active');
+    })
+}
 };
 
-// setTimeout(function() {
-//     let buttonsFilter = document.querySelectorAll("#filter button");
-//     console.log(buttonsFilter);
-// }, 50)
 
-
+setTimeout(() => {const tousLesBoutons = document.querySelectorAll("#filter button");
+console.log(tousLesBoutons);
+tousLesBoutons.forEach(button => {
+    button.addEventListener('click', () => {
+        tousLesBoutons.forEach(btn => {
+            btn.classList.remove('active');
+        })
+        button.classList.add('active');
+    })
+})
+},200);
 
 
 
