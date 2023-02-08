@@ -1,5 +1,8 @@
+
+
 export function connexionUser(user) {
   let chargeUtile = JSON.stringify(user);
+  let responseLogin = '';
 
   fetch("http://localhost:5678/api/users/login", {
     method: "POST",
@@ -7,7 +10,7 @@ export function connexionUser(user) {
     body: chargeUtile,
   }).then((res) => {
     if (res.ok) {
-      console.log("ok");
+      return res.json();
     } else {
       console.log("error here!");
       if (res.status === 404) {
@@ -16,5 +19,15 @@ export function connexionUser(user) {
         alert("Mot de passe incorrect");
       }
     }
+  })
+  .then((infoLogin) => {
+    responseLogin = infoLogin;
+    const myToken = responseLogin.token;
+    const myUserId = responseLogin.userId;
+    console.log(myToken);
+    console.log(myUserId);
+    localStorage.setItem('token', myToken);
+    localStorage.setItem('userId', myUserId);
+    window.location.replace("./index.html");
   });
 }

@@ -22,6 +22,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -53,6 +54,59 @@ body {
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
+
+#topmodale {
+	display: none;
+}
+
+
+#topmodale input {
+	background-color: white;
+	border-radius: 20px;
+	color: black;
+	font-size: 14px;
+	width: 216px;
+	height: 38px;
+	font-family: 'Work Sans';
+	margin-top: 10px;
+}
+
+#topmodale.connected {
+	display: block;
+	color: white;
+	text-align: center;
+	background-color: black;
+	width: 1440px;
+	height: 60px;
+}
+
+.modal {
+	display: flex;
+	position: fixed;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	color: white;
+}
+
+.modal-wrapper {
+	overflow: auto;
+	background-color: #fff;
+	width: 630px;
+	height: 730px;
+	padding: 20px;
+	max-width: calc(100vw - 20px);
+	max-height: calc(100vh - 20px);
+}
+
+#js-admin-connected {
+	display: none;
+}
+
 header {
 	display: flex;
 	justify-content: space-between;
@@ -103,6 +157,7 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -142,6 +197,13 @@ li:hover {
 	margin-top: 150px;
 	margin-bottom: 1em;
 	text-align: center;
+}
+
+#spanmodiftitre {
+	margin-left: 100px;
+	color: black;
+	font-size: 14px;
+    --fa-style-family-classic: "Font Awesome 6 Free";
 }
 
 #login-page-login label {
