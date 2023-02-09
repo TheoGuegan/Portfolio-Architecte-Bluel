@@ -2,7 +2,7 @@
 import { connexionUser } from './connect.js';
 
 const gallery = document.querySelector(".gallery");
-const filterBar = document.querySelector("#filter");
+const galleryModal = document.querySelector(".gallerymodal");
 let cards = [];
 let categories = [];
 
@@ -24,6 +24,25 @@ function createCard(works) {
   }
 };
 
+function createCardModal(works) {
+  for (let i = 0; i < works.length; i++) {
+    const work = works [i];
+    const figureCardModal = document.createElement("figure");
+    figureCardModal.classList = work.categoryId;
+    const imageCardModal = document.createElement("img");
+    imageCardModal.setAttribute("crossorigin", "anonymous");
+    imageCardModal.setAttribute("src", work.imageUrl);
+    imageCardModal.setAttribute("alt", work.title);
+    const figCaptionCardModal = document.createElement("figcaption");
+    figCaptionCardModal.innerText = "éditer";
+    galleryModal.appendChild(figureCardModal);
+    figureCardModal.appendChild(imageCardModal);
+    figureCardModal.appendChild(figCaptionCardModal);
+  }
+};
+
+
+
 if (gallery) {fetch("http://localhost:5678/api/works")
   .then((res) => {
     if (res.ok) {
@@ -35,6 +54,7 @@ if (gallery) {fetch("http://localhost:5678/api/works")
   .then((works) => {
     cards = works;
     createCard(works);
+    createCardModal(works);
   })
 };
 

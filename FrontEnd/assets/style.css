@@ -80,6 +80,50 @@ body {
 	height: 60px;
 }
 
+#modalbuttoncontainer {
+	display: flex;
+	align-items: flex-end;
+	width: 100%;
+}
+
+.js-modal-close {
+	border: none;
+	background-color: white;
+}
+
+.modal-wrapper h1 {
+	align-items: center;
+	color: black;
+	font-size: 26px;
+	font-family: 'Work Sans';
+	font-style: normal;
+}
+
+.gallerymodal {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 20px 5%;
+	column-gap: 20px;
+	row-gap: 20px;
+}
+
+.gallerymodal figure {
+	height: 140px;
+	width : 90px;
+	margin: 0;
+}
+
+.gallerymodal figure img{
+	height: 105px;
+	width: 90px;
+}
+
+.gallerymodal figcaption {
+	color: black;
+}
+
+
+
 .modal {
 	display: flex;
 	position: fixed;
@@ -94,6 +138,8 @@ body {
 }
 
 .modal-wrapper {
+	display: flex;
+	flex-direction: column;
 	overflow: auto;
 	background-color: #fff;
 	width: 630px;
