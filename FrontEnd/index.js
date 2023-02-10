@@ -6,7 +6,7 @@ const galleryModal = document.querySelector(".gallerymodal");
 let cards = [];
 let categories = [];
 
-function createCard(works) {
+function createCard(works, view) {
   // console.log(works);
   for (let i = 0; i < works.length; i++) {
     const work = works[i];
@@ -17,31 +17,18 @@ function createCard(works) {
     imageCard.setAttribute("src", work.imageUrl);
     imageCard.setAttribute("alt", work.title);
     const figCaptionCard = document.createElement("figcaption");
-    figCaptionCard.innerText = work.title;
-    gallery.appendChild(figureCard);
+    figCaptionCard.innerText = view.closest('#modal1') ? 'Éditer' : work.title;
+    const iconCardContainer = document.createElement("div");
+    iconCardContainer.classList = view.closest('#modal1') ? "icontrashenable" : "icontrashdisable";
+    const iconCard = document.createElement("p");
+    iconCard.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+    view.appendChild(figureCard);
+    view.appendChild(iconCardContainer);
+    iconCardContainer.appendChild(iconCard);
     figureCard.appendChild(imageCard);
     figureCard.appendChild(figCaptionCard);
   }
 };
-
-function createCardModal(works) {
-  for (let i = 0; i < works.length; i++) {
-    const work = works [i];
-    const figureCardModal = document.createElement("figure");
-    figureCardModal.classList = work.categoryId;
-    const imageCardModal = document.createElement("img");
-    imageCardModal.setAttribute("crossorigin", "anonymous");
-    imageCardModal.setAttribute("src", work.imageUrl);
-    imageCardModal.setAttribute("alt", work.title);
-    const figCaptionCardModal = document.createElement("figcaption");
-    figCaptionCardModal.innerText = "éditer";
-    galleryModal.appendChild(figureCardModal);
-    figureCardModal.appendChild(imageCardModal);
-    figureCardModal.appendChild(figCaptionCardModal);
-  }
-};
-
-
 
 if (gallery) {fetch("http://localhost:5678/api/works")
   .then((res) => {
@@ -53,8 +40,8 @@ if (gallery) {fetch("http://localhost:5678/api/works")
   })
   .then((works) => {
     cards = works;
-    createCard(works);
-    createCardModal(works);
+    createCard(works, gallery);
+    createCard(works, galleryModal);
   })
 };
 

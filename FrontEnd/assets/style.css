@@ -81,14 +81,13 @@ body {
 }
 
 #modalbuttoncontainer {
-	display: flex;
-	align-items: flex-end;
-	width: 100%;
+	text-align: end;
 }
 
 .js-modal-close {
 	border: none;
 	background-color: white;
+	font-size: 1.5em;
 }
 
 .modal-wrapper h1 {
@@ -97,12 +96,13 @@ body {
 	font-size: 26px;
 	font-family: 'Work Sans';
 	font-style: normal;
+	margin-bottom: 30px;
 }
 
 .gallerymodal {
 	display: flex;
 	flex-wrap: wrap;
-	margin: 20px 5%;
+	margin: 20px 5% 0 5%;
 	column-gap: 20px;
 	row-gap: 20px;
 }
@@ -122,6 +122,43 @@ body {
 	color: black;
 }
 
+#addphotobuttoncontainer {
+	display: flex;
+}
+
+.addphotobutton {
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+	height: 3em;
+}
+
+#modal1 a {
+	color: #d65353 ;
+	text-align: center;
+}
+
+.icontrashdisable {
+	display: none;
+}
+
+.icontrashenable {
+	display: block;
+	z-index: 2;
+	margin-left: -35px;
+	margin-top: 5px;
+
+}
+
+.icontrashenable i {
+	color: white;
+	background-color: black;
+}
 
 
 .modal {
