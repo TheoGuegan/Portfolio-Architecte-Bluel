@@ -5,13 +5,14 @@ const gallery = document.querySelector(".gallery");
 const galleryModal = document.querySelector(".gallerymodal");
 let cards = [];
 let categories = [];
+let modal1 = document.getElementById('modal1');
 
 function createCard(works, view) {
   // console.log(works);
   for (let i = 0; i < works.length; i++) {
     const work = works[i];
     const figureCard = document.createElement("figure");
-    figureCard.classList = work.categoryId;
+    figureCard.id = work.categoryId;
     const imageCard = document.createElement("img");
     imageCard.setAttribute("crossorigin", "anonymous");
     imageCard.setAttribute("src", work.imageUrl);
@@ -54,7 +55,7 @@ if (boutonTous) {boutonTous.addEventListener("click", function () {
     return work.category.id == 1 || 2 || 3;
   });
   gallery.innerHTML = "";
-  createCard(cardsAll);
+  createCard(cardsAll, gallery);
 });
 };
 
@@ -71,7 +72,7 @@ function createButton(categoriesData) {
         return work.category.id == buttonFilter.id;
       });
       gallery.innerHTML = "";
-      createCard(cardsFiltered);
+      createCard(cardsFiltered, gallery);
       buttonFilter.classList = "active";
     });
   }
@@ -102,7 +103,6 @@ if (gallery) {fetch("http://localhost:5678/api/categories")
 
 
 let loginForm = document.getElementById("loginform");
-let chargeUtile = "";
 
 if (loginForm) {loginForm.addEventListener("submit", function (event) {
 event.preventDefault();
@@ -137,10 +137,6 @@ if (adminConnected) {
     
   })
 };
-
-
-
-
 
 let modal = null ;
 
@@ -182,3 +178,21 @@ window.addEventListener('keydown', function (e) {
   }
 });
 
+const buttonAddPhoto = document.getElementById('addphotobutton');
+const titreModal = document.getElementById('titlemodal');
+const modalSuppr = document.getElementById('modal-suppr');
+
+
+
+function changePageModal () {
+  buttonAddPhoto.addEventListener('click', function() {
+    galleryModal.innerHTML = '<input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">';
+    titreModal.innerText = 'Ajout photo';
+    modalSuppr.innerHTML="";
+    buttonAddPhoto.innerText="Valider";
+
+  });
+};
+
+
+if (buttonAddPhoto) {changePageModal()};

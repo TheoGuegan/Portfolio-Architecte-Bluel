@@ -59,8 +59,10 @@ body {
 	display: none;
 }
 
-
-#topmodale input {
+#linktopmodal {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background-color: white;
 	border-radius: 20px;
 	color: black;
@@ -68,11 +70,13 @@ body {
 	width: 216px;
 	height: 38px;
 	font-family: 'Work Sans';
-	margin-top: 10px;
+	margin-left: 10px;
 }
 
 #topmodale.connected {
-	display: block;
+	display: flex;
+    align-items: center;
+    justify-content: center;
 	color: white;
 	text-align: center;
 	background-color: black;
@@ -82,6 +86,11 @@ body {
 
 #modalbuttoncontainer {
 	text-align: end;
+}
+
+.js-modal {
+	text-decoration: none;
+	color: black;
 }
 
 .js-modal-close {
@@ -126,7 +135,7 @@ body {
 	display: flex;
 }
 
-.addphotobutton {
+/* #addphotobutton {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -137,6 +146,19 @@ body {
 	border-radius: 60px ;
 	height: 3em;
 }
+
+#avatar {
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+	height: 3em;
+	text-decoration: none;
+} */
 
 #modal1 a {
 	color: #d65353 ;
