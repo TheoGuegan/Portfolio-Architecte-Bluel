@@ -135,7 +135,7 @@ body {
 	display: flex;
 }
 
-/* #addphotobutton {
+#addphotobutton {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -147,7 +147,11 @@ body {
 	height: 3em;
 }
 
-#avatar {
+#modal-suppr {
+	text-decoration: none;
+}
+
+/* #avatar {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -174,6 +178,7 @@ body {
 	z-index: 2;
 	margin-left: -35px;
 	margin-top: 5px;
+	height: 15px;
 
 }
 

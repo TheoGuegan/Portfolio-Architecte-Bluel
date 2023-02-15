@@ -21,8 +21,9 @@ function createCard(works, view) {
     figCaptionCard.innerText = view.closest('#modal1') ? 'Éditer' : work.title;
     const iconCardContainer = document.createElement("div");
     iconCardContainer.classList = view.closest('#modal1') ? "icontrashenable" : "icontrashdisable";
+    iconCardContainer.id = work.id;
     const iconCard = document.createElement("p");
-    iconCard.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+    iconCard.innerHTML = '<i class="fa-sharp fa-solid fa-trash-can"></i>';
     view.appendChild(figureCard);
     view.appendChild(iconCardContainer);
     iconCardContainer.appendChild(iconCard);
@@ -45,6 +46,8 @@ if (gallery) {fetch("http://localhost:5678/api/works")
     createCard(works, galleryModal);
   })
 };
+
+
 
 const boutonTous = document.querySelector("#btn-all");
 const boutonObjets = document.querySelector(".btn-objets");
@@ -87,6 +90,22 @@ function createButton(categoriesData) {
   });
 }
 
+function createSelectBar(categoriesData) {
+  const categoriesList = document.createElement("select");
+  for (let i = 0; i < categoriesData.length; i++) {
+    const category = categoriesData[i];
+
+    categoriesList.setAttribute('name', 'select');
+    categoriesList.setAttribute('onchange', 'updated(this)');
+    const categoriesItem = document.createElement("option");
+    
+    categoriesList.appendChild(categoriesItem);
+    categoriesItem.setAttribute('value', category.id);
+    categoriesItem.innerText = category.name;
+}
+  galleryModal.appendChild(categoriesList);
+}
+
 if (gallery) {fetch("http://localhost:5678/api/categories")
   .then((res) => {
     if (res.ok) {
@@ -98,9 +117,11 @@ if (gallery) {fetch("http://localhost:5678/api/categories")
   .then((categoriesData) => {
     categories = categoriesData;
     createButton(categoriesData);
+    createSelectBar(categoriesData);
+    console.log(categories);
   });
 }
-
+console.log(categories);
 
 let loginForm = document.getElementById("loginform");
 
@@ -183,16 +204,36 @@ const titreModal = document.getElementById('titlemodal');
 const modalSuppr = document.getElementById('modal-suppr');
 
 
-
 function changePageModal () {
   buttonAddPhoto.addEventListener('click', function() {
-    galleryModal.innerHTML = '<input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">';
+    galleryModal.innerHTML = ''
+    galleryModal.innerHTML += '<div id="selectfilebuttoncontainer"><form method="get" action""><input type="file" id="selectfilebutton" name="imageUrl" accept="image/png, image/jpeg">';
+    galleryModal.innerHTML += '<p>jpg, png : 4mo max</p> <br>';
+    galleryModal.innerHTML += '<label>Titre</label> <input type="text" name="title"> <br>';
+    // galleryModal.innerHTML += createSelectBar(categories),
+    // galleryModal.innerHTML +=
     titreModal.innerText = 'Ajout photo';
-    modalSuppr.innerHTML="";
+    modalSuppr.style.display = 'none';
     buttonAddPhoto.innerText="Valider";
 
   });
 };
 
-
 if (buttonAddPhoto) {changePageModal()};
+
+// const buttonDeleteProject = document.querySelectorAll('.icontrashenable');
+
+// function deleteProject ()
+
+// if (buttonDeleteProject) {fetch ("http://localhost:5678/api/works/1")
+//   .then((res) => {
+//     if (res.ok) {
+//       return res.json();
+//     } else {
+//       console.log("error here !");
+//     }
+//   })
+//     .then ((deleteData) => {
+//       console.log(deleteData);
+//     })
+//   }
