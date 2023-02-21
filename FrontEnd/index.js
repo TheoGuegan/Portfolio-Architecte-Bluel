@@ -1,16 +1,13 @@
-
-import { connexionUser } from './connect.js';
+import { connexionUser } from "./connect.js";
 
 const gallery = document.querySelector(".gallery");
 const galleryModal = document.querySelector(".gallerymodal");
+let modal1 = document.getElementById("modal1");
 let cards = [];
 let categories = [];
-let modal1 = document.getElementById('modal1');
 
 function createCard(works, view) {
-  // console.log(works);
-  for (let i = 0; i < works.length; i++) {
-    const work = works[i];
+  for (const work of works) {
     const figureCard = document.createElement("figure");
     figureCard.id = work.categoryId;
     const imageCard = document.createElement("img");
@@ -18,9 +15,11 @@ function createCard(works, view) {
     imageCard.setAttribute("src", work.imageUrl);
     imageCard.setAttribute("alt", work.title);
     const figCaptionCard = document.createElement("figcaption");
-    figCaptionCard.innerText = view.closest('#modal1') ? 'Éditer' : work.title;
+    figCaptionCard.innerText = view.closest("#modal1") ? "Éditer" : work.title;
     const iconCardContainer = document.createElement("div");
-    iconCardContainer.classList = view.closest('#modal1') ? "icontrashenable" : "icontrashdisable";
+    iconCardContainer.classList = view.closest("#modal1")
+      ? "icontrashenable"
+      : "icontrashdisable";
     iconCardContainer.id = work.id;
     const iconCard = document.createElement("p");
     iconCard.innerHTML = '<i class="fa-sharp fa-solid fa-trash-can"></i>';
@@ -30,42 +29,39 @@ function createCard(works, view) {
     figureCard.appendChild(imageCard);
     figureCard.appendChild(figCaptionCard);
   }
-};
+}
 
-if (gallery) {fetch("http://localhost:5678/api/works")
-  .then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      console.log("error here !");
-    }
-  })
-  .then((works) => {
-    cards = works;
-    createCard(works, gallery);
-    createCard(works, galleryModal);
-  })
-};
-
-
+if (gallery) {
+  fetch("http://localhost:5678/api/works")
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        console.log("error here !");
+      }
+    })
+    .then((works) => {
+      cards = works;
+      createCard(works, gallery);
+      createCard(works, galleryModal);
+    });
+}
 
 const boutonTous = document.querySelector("#btn-all");
-const boutonObjets = document.querySelector(".btn-objets");
 
-if (boutonTous) {boutonTous.addEventListener("click", function () {
-  const cardsAll = cards.filter(function (work) {
-    // console.log(work.category.id);
-    return work.category.id == 1 || 2 || 3;
+if (boutonTous) {
+  boutonTous.addEventListener("click", function () {
+    const cardsAll = cards.filter(function (work) {
+      // console.log(work.category.id);
+      return work.category.id == 1 || 2 || 3;
+    });
+    gallery.innerHTML = "";
+    createCard(cardsAll, gallery);
   });
-  gallery.innerHTML = "";
-  createCard(cardsAll, gallery);
-});
-};
+}
 
 function createButton(categoriesData) {
-  // console.log(categoriesData);
-  for (let i = 0; i < categoriesData.length; i++) {
-    const category = categoriesData[i];
+  for (const category of categoriesData) {
     const buttonFilter = document.createElement("button");
     buttonFilter.id = category.id;
     buttonFilter.innerText = category.name;
@@ -77,7 +73,7 @@ function createButton(categoriesData) {
       gallery.innerHTML = "";
       createCard(cardsFiltered, gallery);
       buttonFilter.classList = "active";
-    });
+    })
   }
   const tousLesBoutons = document.querySelectorAll("#filter button");
   tousLesBoutons.forEach((button) => {
@@ -90,52 +86,51 @@ function createButton(categoriesData) {
   });
 }
 
+// createButton();
+
 function createSelectBar(categoriesData) {
   const categoriesList = document.createElement("select");
-  for (let i = 0; i < categoriesData.length; i++) {
-    const category = categoriesData[i];
-
-    categoriesList.setAttribute('name', 'select');
-    categoriesList.setAttribute('onchange', 'updated(this)');
+  categoriesList.setAttribute("name", "select");
+  for (const category of categoriesData) {
     const categoriesItem = document.createElement("option");
-    
     categoriesList.appendChild(categoriesItem);
-    categoriesItem.setAttribute('value', category.id);
+    categoriesItem.setAttribute("value", category.id);
     categoriesItem.innerText = category.name;
+  }
+  return categoriesList;
 }
-  galleryModal.appendChild(categoriesList);
+// function testFetch() {
+if (gallery) {
+  fetch("http://localhost:5678/api/categories")
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        console.log("error here !");
+      }
+    })
+    .then((categoriesData) => {
+      categories = categoriesData;
+      createButton(categoriesData);
+      createSelectBar(categoriesData);
+      // return categories;
+    });
 }
-
-if (gallery) {fetch("http://localhost:5678/api/categories")
-  .then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      console.log("error here !");
-    }
-  })
-  .then((categoriesData) => {
-    categories = categoriesData;
-    createButton(categoriesData);
-    createSelectBar(categoriesData);
-    console.log(categories);
-  });
-}
-console.log(categories);
 
 let loginForm = document.getElementById("loginform");
 
-if (loginForm) {loginForm.addEventListener("submit", function (event) {
-event.preventDefault();
-const user = {
-    email : event.target.querySelector("#email").value,
-    password : event.target.querySelector("#password").value,
-};
-connexionUser(user);
-});
+if (loginForm) {
+  loginForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const user = {
+      email: event.target.querySelector("#email").value,
+      password: event.target.querySelector("#password").value,
+    };
+    connexionUser(user);
+  });
 }
 
-const adminConnected = localStorage.getItem('userId');
+const adminConnected = localStorage.getItem("userId");
 const figCaptionModif = document.getElementById("figcapmodif");
 const divTopModif = document.getElementById("divtopmodif");
 const mesProjetsModif = document.getElementById("mesprojetsmodif");
@@ -144,96 +139,97 @@ const btnLogin = document.getElementById("js-admin-deco");
 
 if (adminConnected) {
   const divTopModale = document.getElementById("topmodale");
-  btnLogin.style.display = 'none';
-  btnLogout.style.display='block';
+  btnLogin.style.display = "none";
+  btnLogout.style.display = "block";
   divTopModale.classList = "connected";
-  figCaptionModif.innerHTML = "<i class='fa-regular fa-pen-to-square'></i> Modifier";
-  divTopModif.innerHTML = "<i class='fa-regular fa-pen-to-square'></i> Modifier"
-  mesProjetsModif.innerHTML = "Mes Projets <span id='spanmodiftitre'><i class='fa-regular fa-pen-to-square'></i> Modifier</span>";
-  btnLogout.addEventListener('click', function () {
+  figCaptionModif.innerHTML =
+    "<i class='fa-regular fa-pen-to-square'></i> Modifier";
+  divTopModif.innerHTML =
+    "<i class='fa-regular fa-pen-to-square'></i> Modifier";
+  mesProjetsModif.innerHTML =
+    "Mes Projets <span id='spanmodiftitre'><i class='fa-regular fa-pen-to-square'></i> Modifier</span>";
+  btnLogout.addEventListener("click", function () {
     window.location.replace("./index.html");
     localStorage.clear();
-    btnLogout.style.display ='none';
-    btnLogin.style.display='block';
-    
-  })
-};
+    btnLogout.style.display = "none";
+    btnLogin.style.display = "block";
+  });
+}
 
-let modal = null ;
+let modal = null;
 
 const openModal = function (e) {
-  e.preventDefault()
-  const target = document.querySelector(e.target.getAttribute('href'));
+  e.preventDefault();
+  const target = document.querySelector(e.target.getAttribute("href"));
   target.style.display = null;
-  target.removeAttribute('aria-hidden');
-  target.setAttribute('aria-modal', 'true');
+  target.removeAttribute("aria-hidden");
+  target.setAttribute("aria-modal", "true");
   modal = target;
-  modal.addEventListener('click', closeModal);
-  modal.querySelector('.js-modal-close').addEventListener('click', closeModal);
-  modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation);
+  modal.addEventListener("click", closeModal);
+  modal.querySelector(".js-modal-close").addEventListener("click", closeModal);
+  modal
+    .querySelector(".js-modal-stop")
+    .addEventListener("click", stopPropagation);
 };
 
 const closeModal = function (e) {
   if (modal === null) return;
   e.preventDefault();
-  modal.style.display = 'none';
-  modal.setAttribute('aria-hidden', 'true');
-  modal.removeAttribute('aria-modal');
-  modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation);
-  modal.querySelector('.js-modal-close').removeEventListener('click', closeModal);
-  modal.removeEventListener('click', closeModal);
+  modal.style.display = "none";
+  modal.setAttribute("aria-hidden", "true");
+  modal.removeAttribute("aria-modal");
+  modal
+    .querySelector(".js-modal-stop")
+    .removeEventListener("click", stopPropagation);
+  modal
+    .querySelector(".js-modal-close")
+    .removeEventListener("click", closeModal);
+  modal.removeEventListener("click", closeModal);
   modal = null;
 };
 
 const stopPropagation = function (e) {
-  e.stopPropagation()
+  e.stopPropagation();
 };
 
-document.querySelectorAll(".js-modal").forEach(a => {
-  a.addEventListener('click', openModal);
+document.querySelectorAll(".js-modal").forEach((a) => {
+  a.addEventListener("click", openModal);
 });
 
-window.addEventListener('keydown', function (e) {
+window.addEventListener("keydown", function (e) {
   if (e.key === "Escape" || e.key === "Esc") {
-    closeModal(e)
+    closeModal(e);
   }
 });
 
-const buttonAddPhoto = document.getElementById('addphotobutton');
-const titreModal = document.getElementById('titlemodal');
-const modalSuppr = document.getElementById('modal-suppr');
+const buttonAddPhoto = document.getElementById("addphotobutton");
+const titreModal = document.getElementById("titlemodal");
+const modalSuppr = document.getElementById("modal-suppr");
+const turnbackModal = document.querySelector(".js-modal-turnback");
+let pageOne = document.getElementById
 
-
-function changePageModal () {
-  buttonAddPhoto.addEventListener('click', function() {
-    galleryModal.innerHTML = ''
-    galleryModal.innerHTML += '<div id="selectfilebuttoncontainer"><form method="get" action""><input type="file" id="selectfilebutton" name="imageUrl" accept="image/png, image/jpeg">';
-    galleryModal.innerHTML += '<p>jpg, png : 4mo max</p> <br>';
-    galleryModal.innerHTML += '<label>Titre</label> <input type="text" name="title"> <br>';
-    // galleryModal.innerHTML += createSelectBar(categories),
+function changePageModal() {
+  buttonAddPhoto.addEventListener("click", function () {
+    turnbackModal.style.display = "block";
+    galleryModal.innerHTML = "";
+    galleryModal.innerHTML +=
+      '<div id="selectfilebuttoncontainer"><form method="get" action""><input type="file" id="selectfilebutton" name="imageUrl" accept="image/png, image/jpeg">';
+    galleryModal.innerHTML += "<p>jpg, png : 4mo max</p> <br>";
+    galleryModal.innerHTML +=
+      '<label>Titre</label> <input type="text" name="title"> <br>';
+    // let categoriesTest = testFetch ();
+    galleryModal.appendChild(createSelectBar(categories));
     // galleryModal.innerHTML +=
-    titreModal.innerText = 'Ajout photo';
-    modalSuppr.style.display = 'none';
-    buttonAddPhoto.innerText="Valider";
-
+    titreModal.innerText = "Ajout photo";
+    modalSuppr.style.display = "none";
+    buttonAddPhoto.innerText = "Valider";
   });
-};
+}
 
-if (buttonAddPhoto) {changePageModal()};
+turnbackModal.addEventListener('click', function(e) {
+  openModal(e)
+});
 
-// const buttonDeleteProject = document.querySelectorAll('.icontrashenable');
-
-// function deleteProject ()
-
-// if (buttonDeleteProject) {fetch ("http://localhost:5678/api/works/1")
-//   .then((res) => {
-//     if (res.ok) {
-//       return res.json();
-//     } else {
-//       console.log("error here !");
-//     }
-//   })
-//     .then ((deleteData) => {
-//       console.log(deleteData);
-//     })
-//   }
+if (buttonAddPhoto) {
+  changePageModal();
+}

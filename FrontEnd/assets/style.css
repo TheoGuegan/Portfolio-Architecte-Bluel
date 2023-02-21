@@ -213,6 +213,10 @@ body {
 	max-height: calc(100vh - 20px);
 }
 
+.js-modal-turnback {
+	display: none;
+}
+
 #js-admin-connected {
 	display: none;
 }
