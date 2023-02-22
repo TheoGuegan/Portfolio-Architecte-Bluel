@@ -19,18 +19,40 @@
 
 
 <aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display: none;">
+
+	<!-- PAGE ONE MODAL -->
+	
 	<div id="wrapper-pageone" class="modal-wrapper js-modal-stop">
-		<div id="modalbuttoncontainer">
-			<button class="js-modal-turnback"><i class="fa-solid fa-arrow-left"></i></button><button class="js-modal-close">X</button>
+		<div id="wrapper-pageonetest">
+			<div id="modalbuttoncontainer">
+				<button class="js-modal-close">X</button>
+			</div>
+			<h1 id="titlemodal">Galerie photo</h1>
+			<div class="gallerymodal">
+			</div>
+			<div id="addphotobuttoncontainer">
+				<button id="addphotobutton">Ajouter une photo</button>
+			</div>
+			<a id="modal-suppr" href="#">Supprimer la galerie</a>
 		</div>
-		<h1 id="titlemodal">Galerie photo</h1>
-		<div class="gallerymodal">
+
+		<div id="wrapper-pagetwotest">
+			<div id="modalbuttoncontainertwo">
+				<button class="js-modal-turnback"><i class="fa-solid fa-arrow-left"></i></button><button class="js-modal-close-p2">X</button>
+			</div>
+			<h1 id="titlemodaltwo">Ajout photo</h1>
+			<div class="gallerymodaltwo">
+				<form method="get" action="">
+					<input type="file" name="imageUrl" id="selectfilebutton" accept="image/png, image/jpeg">
+					<p>jpg, png : 4mo max</p>
+					<label for="titre">Titre</label><input type="text" name="title">
+					<div id="selectbarplace">
+					</div>
+					<button id="btnvalidermodale">Valider</button>
+				</form>
+			</div>
 		</div>
-		<div id="addphotobuttoncontainer">
-			<button id="addphotobutton">Ajouter une photo</button>
-		</div>
-		<a id="modal-suppr" href="#">Supprimer la galerie</a>
-	</div>
+	</div>	
 </aside>
 
 
