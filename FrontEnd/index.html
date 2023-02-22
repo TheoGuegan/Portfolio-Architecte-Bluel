@@ -42,13 +42,13 @@
 			</div>
 			<h1 id="titlemodaltwo">Ajout photo</h1>
 			<div class="gallerymodaltwo">
-				<form method="get" action="">
+				<form id="newworkform" method="post" action="">
 					<input type="file" name="imageUrl" id="selectfilebutton" accept="image/png, image/jpeg">
 					<p>jpg, png : 4mo max</p>
-					<label for="titre">Titre</label><input type="text" name="title">
+					<label for="titre">Titre</label><input id="titlenewwork" type="text" name="title">
 					<div id="selectbarplace">
 					</div>
-					<button id="btnvalidermodale">Valider</button>
+					<button type="submit" id="btnvalidermodale">Valider</button>
 				</form>
 			</div>
 		</div>
