@@ -17,11 +17,7 @@
 	<p id="boxlinkmodal"><i class='fa-regular fa-pen-to-square'></i> Mode édition <div id="linktopmodal"><a href="#modal1" class="js-modal"> publier les changements</a></div></p>
 </div>
 
-
 <aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display: none;">
-
-	<!-- PAGE ONE MODAL -->
-	
 	<div id="wrapper-pageone" class="modal-wrapper js-modal-stop">
 		<div id="wrapper-pageonetest">
 			<div id="modalbuttoncontainer">
@@ -43,12 +39,23 @@
 			<h1 id="titlemodaltwo">Ajout photo</h1>
 			<div class="gallerymodaltwo">
 				<form id="newworkform" method="post" action="">
-					<input type="file" name="imageUrl" id="selectfilebutton" accept="image/png, image/jpeg">
-					<p>jpg, png : 4mo max</p>
-					<label for="titre">Titre</label><input id="titlenewwork" type="text" name="title">
+					<div id="photoemplacementpreview">
+						<i class="fa-regular fa-image"></i>
+						<div id="inputplace">
+							<input type="file" name="image" id="selectfilebutton" accept="image/png, image/jpeg">
+							<label id="testest" for="selectfilebutton">+ Ajouter photo</label>
+						</div>
+						<p>jpg, png : 4mo max</p>
+						<img src="" alt="" id="imgaddwork">
+					</div>
+					<p id="titleformtext">Titre</p>
+					<input id="titlenewwork" type="text" name="title">
+					<p id="categoryformplace">Catégorie</p>
 					<div id="selectbarplace">
 					</div>
-					<button type="submit" id="btnvalidermodale">Valider</button>
+					<div id="btnvalidermodalecontainer">
+						<button type="submit" id="btnvalidermodale">Valider</button>
+					</div>	
 				</form>
 			</div>
 		</div>
@@ -112,7 +119,6 @@
 
 <footer>
 	<nav>
-		<!-- <input type="button" value="<i class='fa-solid fa-trash-can'</i>"> -->
 		<ul>
 			<li>Mentions Légales</li>
 		</ul>
@@ -122,3 +128,5 @@
 <script type="module" src="./connect.js"></script>
 </body>
 </html>
+
+<button></button>
