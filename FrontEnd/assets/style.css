@@ -59,6 +59,11 @@ body {
 	display: none;
 }
 
+.gallery img {
+	width: 313px !important; 	
+    height: 420px !important;
+}
+
 #linktopmodal {
 	display: flex;
 	justify-content: center;
@@ -96,7 +101,26 @@ body {
 .js-modal-close {
 	border: none;
 	background-color: white;
-	font-size: 1.5em;
+	font-size: 1.2em;
+}
+.js-modal-close-p2 {
+	border: none;
+	background-color: white;
+	font-size: 1.2em;
+}
+.js-modal-turnback {
+	border: none;
+	background-color: white;
+	font-size: 1.2em;
+}
+
+#modalbuttoncontainertwo {
+	display: flex;
+	justify-content: space-between;
+}
+
+#titlemodaltwo {
+	margin-top: 20px;
 }
 
 .modal-wrapper h1 {
@@ -158,17 +182,20 @@ body {
 }
 
 .icontrashenable {
-	display: block;
-	/* z-index: 2;= */
-	margin-left: -35px;
-	margin-top: 5px;
-	height: 15px;
+    display: block;
+    margin-left: -43px;
+    margin-top: 5px;
+    background-color: black;
+    width: 20px;
+	height: 20px;
 
 }
 
 .icontrashenable i {
 	color: white;
 	background-color: black;
+	margin-left: -3px;
+    padding-top: 0px;
 }
 
 
@@ -387,7 +414,16 @@ li:hover {
 }
 
 #introduction p {
-	margin-bottom: 0.5em;
+	margin-bottom: 1.5em;
+}
+
+#figcapmodif {
+	margin-top: 20px;
+	margin-left: 60px;	
+}
+
+#introduction figure {
+	margin-left: -60px;
 }
 #portfolio h2 {
 	text-align: center;
@@ -483,14 +519,10 @@ li:hover {
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
+	grid-column-gap: 0px;
 	grid-row-gap: 20px;
 }
 
-.gallery img {
-	width: 100%;
-
-}
 #contact {
 	width: 50%;
 margin: auto;

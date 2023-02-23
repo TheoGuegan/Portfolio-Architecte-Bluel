@@ -221,6 +221,7 @@ if (inputImg) {
     });
     reader.readAsDataURL(file);
     inputImgtwo.style.display = "none";
+    buttonValiderModal.style.backgroundColor = "#1D6154";
   });
 }
 
@@ -232,6 +233,7 @@ function changePageModal() {
       .querySelector("#selectbarplace")
       .appendChild(createSelectBar(categories));
     inputImgtwo.style.display = "block";
+    buttonValiderModal.style.backgroundColor = "#A7A7A7";
   });
 }
 
@@ -254,7 +256,7 @@ if (buttonValiderModal) {
 
 const form = document.getElementById("newworkform");
 
-form.addEventListener("submit", function (e) {
+if (buttonAddPhoto) {form.addEventListener("submit", function (e) {
   e.preventDefault();
 
   const fileInput = e.target.querySelector("#selectfilebutton");
@@ -289,7 +291,7 @@ form.addEventListener("submit", function (e) {
       console.log(res.status);
     }
   });
-});
+});};
 
 async function deleteWork() {
   const buttonsDelete = document.querySelectorAll(".icontrashenable");
