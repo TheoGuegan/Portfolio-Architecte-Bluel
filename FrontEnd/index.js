@@ -143,7 +143,8 @@ if (adminConnected) {
   divTopModif.innerHTML =
     "<i class='fa-regular fa-pen-to-square'></i> Modifier";
   mesProjetsModif.innerHTML =
-    "Mes Projets <span id='spanmodiftitre'><i class='fa-regular fa-pen-to-square'></i> Modifier</span>";
+    "<i class='fa-regular fa-pen-to-square'></i> Modifier";
+  mesProjetsModif.style.margin = "-20px auto -40px 750px"
   btnLogout.addEventListener("click", function () {
     window.location.replace("./index.html");
     localStorage.clear();

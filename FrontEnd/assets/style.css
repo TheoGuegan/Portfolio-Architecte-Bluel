@@ -85,7 +85,7 @@ body {
 	color: white;
 	text-align: center;
 	background-color: black;
-	width: 1440px;
+	width: 1140px;
 	height: 60px;
 }
 
@@ -425,9 +425,9 @@ li:hover {
 #introduction figure {
 	margin-left: -60px;
 }
+
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
 }
 
 #login-page-login{
@@ -443,8 +443,9 @@ li:hover {
 	text-align: center;
 }
 
-#spanmodiftitre {
-	margin-left: 100px;
+#mesprojetsmodif {
+	margin-top: -50px;
+	margin-left: 750px;
 	color: black;
 	font-size: 14px;
     --fa-style-family-classic: "Font Awesome 6 Free";
@@ -487,6 +488,7 @@ li:hover {
 #filter {
 	display: flex;
 	justify-content: center;
+	margin-top: 50px;
 }
 
 #filter button {
