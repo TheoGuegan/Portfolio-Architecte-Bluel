@@ -17,7 +17,7 @@
 	<p id="boxlinkmodal"><i class='fa-regular fa-pen-to-square'></i> Mode édition <div id="linktopmodal"><a href="#modal1" class="js-modal"> publier les changements</a></div></p>
 </div>
 
-<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display: none;">
+<aside id="modal1" class="modal" aria-hidden="true" aria-labelledby="titlemodal" style="display: none;">
 	<div id="wrapper-pageone" class="modal-wrapper js-modal-stop">
 		<div id="wrapper-pageonetest">
 			<div id="modalbuttoncontainer">
@@ -38,7 +38,7 @@
 			</div>
 			<h1 id="titlemodaltwo">Ajout photo</h1>
 			<div class="gallerymodaltwo">
-				<form id="newworkform" method="post" action="">
+				<form id="newworkform" method="post" action="newwork">
 					<div id="photoemplacementpreview">
 						<i class="fa-regular fa-image"></i>
 						<div id="inputplace">
@@ -67,7 +67,7 @@
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
-			<a href="/FrontEnd/index.html"><li>projets</li></a>
+			<li><a href="/FrontEnd/index.html"></a>projets</a></li>
 			<li>contact</li>
 			<a href="/FrontEnd/pagelogin.html" id="js-admin-deco"><li>login</li></a>
 			<a href="/FrontEnd/index.html" id="js-admin-connected"><li>logout</li></a>
@@ -96,7 +96,7 @@
 	</section>
 	<section id="portfolio">
 		<h2 id="titleproject">Mes Projets</h2>
-		<p id="mesprojetsmodif"></p>
+		<p id="mesprojetsmodif" style="display: none;"><i class='fa-regular fa-pen-to-square'></i> Modifier</p>
 		<div id="filter">
 			<button id="btn-all" class="active">Tous</button>
 		</div>

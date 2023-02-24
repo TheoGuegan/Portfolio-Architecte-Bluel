@@ -142,9 +142,8 @@ if (adminConnected) {
     "<i class='fa-regular fa-pen-to-square'></i> Modifier";
   divTopModif.innerHTML =
     "<i class='fa-regular fa-pen-to-square'></i> Modifier";
-  mesProjetsModif.innerHTML =
-    "<i class='fa-regular fa-pen-to-square'></i> Modifier";
-  mesProjetsModif.style.margin = "-20px auto -40px 750px"
+  mesProjetsModif.style.display = "block";
+  mesProjetsModif.style.margin = "-20px auto 0px 750px";
   btnLogout.addEventListener("click", function () {
     window.location.replace("./index.html");
     localStorage.clear();
