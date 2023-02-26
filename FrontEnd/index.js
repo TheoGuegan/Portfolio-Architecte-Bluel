@@ -207,7 +207,7 @@ window.addEventListener("keydown", function (e) {
 const buttonAddPhoto = document.getElementById("addphotobutton");
 const turnbackModal = document.querySelector(".js-modal-turnback");
 const buttonValiderModal = document.querySelector("#btnvalidermodale");
-
+const pInGalleryPhoto = document.getElementById("pingalleryphoto");
 const inputImg = document.getElementById("selectfilebutton");
 const inputImgtwo = document.getElementById("inputplace");
 const imgPreview = document.getElementById("imgaddwork");
@@ -221,6 +221,7 @@ if (inputImg) {
     });
     reader.readAsDataURL(file);
     inputImgtwo.style.display = "none";
+    pInGalleryPhoto.style.display = "none";
     buttonValiderModal.style.backgroundColor = "#1D6154";
   });
 }
@@ -233,6 +234,7 @@ function changePageModal() {
       .querySelector("#selectbarplace")
       .appendChild(createSelectBar(categories));
     inputImgtwo.style.display = "block";
+    pInGalleryPhoto.style.display = "block";
     buttonValiderModal.style.backgroundColor = "#A7A7A7";
   });
 }
@@ -242,7 +244,7 @@ function returnPageOne() {
     document.getElementById("wrapper-pageonetest").style.display = "block";
     document.getElementById("wrapper-pagetwotest").style.display = "none";
     document.querySelector("#selectbarplace").innerHTML = "";
-    imgPreview.remove();
+    imgPreview.src = "";
   });
 }
 
