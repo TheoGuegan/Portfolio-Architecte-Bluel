@@ -326,3 +326,12 @@ async function init() {
 }
 
 init();
+
+const eyeHelpers = document.getElementsByClassName('toggle-pw-visibility');
+Array.from(eyeHelpers).forEach(eye => {
+    const passwordInput = eye.closest('.input-group').querySelector('input');
+    eye.addEventListener('click', () => {
+        eye.classList.toggle('opened');
+        passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+    });
+});

@@ -10,6 +10,7 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	<link rel="shortcut icon" href="#">
+	<script src="https://kit.fontawesome.com/a581b1f253.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
@@ -30,8 +31,14 @@
             <label for="email">E-mail</label>
             <input type="text" name="" id="email">
             <br><br>
-            <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password">
+            <div class="input-group">
+				<label for="password">Mot de passe</label>
+            	<input type="password" name="password" id="password">
+				<div class="toggle-pw-visibility">
+						<i class="fa-solid fa-eye closed-eye"></i>
+						<i class="fa-regular fa-eye opened-eye"></i>
+				</div>
+			</div>	
             <button type="submit">Se connecter</button>
             <br>
             <a href="#">Mot de passe oublié</a>

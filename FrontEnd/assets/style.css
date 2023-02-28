@@ -31,7 +31,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	background: #E5E5E5;
+	background: #FFFEF8;
 }
 ol, ul {
 	list-style: none;
@@ -527,7 +527,7 @@ li:hover {
     font-family: 'Syne';
     font-weight: 700;
     color: #1D6154;
-    background-color: white;
+    background-color: #FFFEF8;
     margin: 2em 20px;
     min-width: 100px;
     text-align: center;
@@ -606,3 +606,42 @@ footer nav ul {
 	margin: 2em
 }
 
+.input-group{
+	position: relative;
+}
+
+.toggle-pw-visibility {
+	position: absolute;
+	cursor: pointer;
+	top: 75%;
+	right: 0;
+	transform: translateY(-50%);
+	height: 20px;
+	width: 20px;
+  }
+  
+  .toggle-pw-visibility .closed-eye {
+	display: block;
+  }
+  
+  .toggle-pw-visibility .opened-eye {
+	display: none;
+  }
+  
+  .toggle-pw-visibility.opened .closed-eye {
+	display: none;
+  }
+  
+  .toggle-pw-visibility.opened .opened-eye {
+	display: block;
+  }
+  
+  .toggle-pw-visibility i {
+	color: black;
+	font-size: 1em;
+  }
+  
+  .password-wrapper {
+	position: relative;
+  }
+  
